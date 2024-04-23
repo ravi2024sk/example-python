@@ -1,14 +1,16 @@
 # Copyright 2020 Pants project contributors.
 # Licensed under the Apache License, Version 2.0 (see LICENSE).
 
-from colors import green
+import requests
 
-from helloworld.greet.greeting import Greeter
-
-
-def say_hello() -> None:
-    greeting = Greeter().greet("Pantsbuild")
-    print(green(greeting))
+def say_hello():
+    resp = requests.get("https://httpbin.org/get")
+    if resp.status_code == 200:
+        print("i am here")
+        return "hi"
+    else:
+        print("i am here")
+        return "something went wrong"
 
 
 if __name__ == "__main__":

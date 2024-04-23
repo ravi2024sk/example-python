@@ -15,3 +15,5 @@ __pycache__/
 # Editors
 .idea/
 *.iml
+venv/
+*.parquet

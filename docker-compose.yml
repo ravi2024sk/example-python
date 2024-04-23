@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  build:
+    image: "python:3.12"
+    volumes:
+      - .:/code
+    environment:
+      # Explicitly setting python intepreter for pants because multiple Python intepreters
+      # could be available in the Docker image
+      - PYTHON=/usr/bin/python3
+    # Setting --no-watch-filesystem --no-pantsd flags because inotify doesn't work while emulating
+    # linux/amd64 on macOS ARM Docker. This is default value for x86
+    command: sh -c /code/sh/package_entrypoint.sh
+    platform: "linux/amd64"
